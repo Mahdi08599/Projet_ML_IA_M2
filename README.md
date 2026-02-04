@@ -75,5 +75,4 @@ The web app allows users to:
 ├── creditcard.csv         # Dataset (Git LFS or Local)
 ├── train_model.py         # Main ML pipeline (Preprocessing -> SMOTE -> Training)
 ├── app.py                 # Streamlit Dashboard code
-├── requirements.txt       # Dependencies
 └── README.md              # Project Documentation
