@@ -25,10 +25,10 @@ We compared our "Robust" Random Forest against the paper's reported metrics. Whi
 
 | Metric | Paper's Random Forest | **Our Optimized Model** | Analysis |
 | :--- | :--- | :--- | :--- |
-| **F1-Score** | [cite_start]0.8256 [cite: 33] | **0.7847** | We matched the performance range while using safer hyperparameters. |
-| **Precision** | [cite_start]~59% [cite: 333] | **74%** | **Superiority:** Our model generates significantly fewer false alarms. |
-| **Recall** | [cite_start]100.0% [cite: 333] | **84.0%** | **Realism:** We avoided overfitting (`max_depth=20`) for better generalization. |
-| **ROC-AUC** | [cite_start]0.9759 [cite: 33] | **0.9796** | **Robustness:** Our model demonstrates slightly better ranking capability. |
+| **F1-Score** |**0.8256**| **0.7847** | We matched the performance range while using safer hyperparameters. |
+| **Precision** |**59%**| **74%** | **Superiority:** Our model generates significantly fewer false alarms. |
+| **Recall** |**100.0%**| **84.0%** | **Realism:** We avoided overfitting (`max_depth=20`) for better generalization. |
+| **ROC-AUC** | **0.9759** | **0.9796** | **Robustness:** Our model demonstrates slightly better ranking capability. |
 
 ---
 
