@@ -3,7 +3,7 @@ import pandas as pd
 import numpy as np
 import matplotlib.pyplot as plt
 import seaborn as sns
-from matplotlib.colors import LogNorm # Important pour la couleur de la matrice
+from matplotlib.colors import LogNorm 
 
 from sklearn.model_selection import train_test_split
 from sklearn.preprocessing import RobustScaler
@@ -22,11 +22,10 @@ Cette application démontre un modèle **Random Forest** entraîné sur des donn
 """)
 
 # =============================
-# LOAD & TRAIN MODEL (Rigoureux)
+# LOAD & TRAIN MODEL 
 # =============================
 @st.cache_resource 
 def load_and_train():
-    # Chargement
     try:
         df = pd.read_csv("creditcard.csv")
     except FileNotFoundError:
