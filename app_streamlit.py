@@ -11,7 +11,6 @@ from imblearn.over_sampling import SMOTE
 # PAGE CONFIG
 # =============================
 st.set_page_config(page_title="Fraud Detection Demo", layout="wide")
-
 st.title("💳 Credit Card Fraud Detection")
 st.markdown("""
 Cette application utilise un modèle **Random Forest** optimisé (SMOTE + RobustScaler) 
