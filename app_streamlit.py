@@ -17,7 +17,6 @@ from imblearn.over_sampling import SMOTE
 st.set_page_config(page_title="Fraud Detection Demo", layout="wide", page_icon="💳")
 st.title("💳 Détection de Fraude par Carte Bancaire")
 st.markdown("""
-*Projet de fin d'études (Master 2)*. 
 Cette application démontre un modèle **Random Forest** entraîné sur des données déséquilibrées 
 (utilisant SMOTE et RobustScaler) et validé rigoureusement sur un jeu de test indépendant.
 """)
