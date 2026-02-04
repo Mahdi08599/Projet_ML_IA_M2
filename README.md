@@ -12,10 +12,10 @@ The goal was to replicate the study's findings regarding the superiority of **Ra
 ---
 
 ## 🎯 Key Objectives Achieved
-- [cite_start]**Paper Reproduction:** Validated the authors' conclusion that Random Forest outperforms other traditional models[cite: 33].
+- [cite_start]**Paper Reproduction:** Validated the authors' conclusion that Random Forest outperforms other traditional models.
 - **Engineering Improvements:** Replaced the paper's *StandardScaler* with **RobustScaler** and limited tree depth to prevent the overfitting observed in the original study.
 - **Real-Time Deployment:** Built an interactive **Streamlit app** capable of detecting fraud signatures in <50ms.
-- [cite_start]**Class Imbalance Handling:** Implemented **SMOTE** (Synthetic Minority Over-sampling Technique) to handle the extreme 0.17% fraud ratio[cite: 32, 175].
+- [cite_start]**Class Imbalance Handling:** Implemented **SMOTE** (Synthetic Minority Over-sampling Technique) to handle the extreme 0.17% fraud ratio.
 
 ---
 
@@ -35,7 +35,7 @@ We compared our "Robust" Random Forest against the paper's reported metrics. Whi
 ## 🛠️ Project Workflow
 
 ### 1. Data Engineering
-- [cite_start]**Log Transformation:** Applied `np.log1p` to the `Amount` feature to compress extreme outliers (up to $25k)[cite: 102].
+- [cite_start]**Log Transformation:** Applied `np.log1p` to the `Amount` feature to compress extreme outliers (up to $25k).
 - **Robust Scaling:** Used `RobustScaler` instead of Standard Scaling to handle the non-normal distribution of fraud data.
 - [cite_start]**PCA Features:** Utilized anonymized features V1-V28 as described in the dataset[cite: 98].
 
