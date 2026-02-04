@@ -102,7 +102,6 @@ The web app allows users to:
 - Python 3.10+
 - pandas
 - scikit-learn
-- TensorFlow / Keras
 - Streamlit
 - Git LFS (for large datasets)
 
