@@ -62,24 +62,23 @@ The web app allows users to:
 ├── requirements.txt       # Dependencies
 └── README.md              # Project Documentation.
 
-### 4. Model Selection & Training
-- Implement models:
-  - **Traditional ML:** Logistic Regression, Random Forest, XGBoost
-  - **Deep Learning:** Feedforward Neural Network
-- Train models on the training set.
+## 4. Model Selection & Training
+- Implement and compare models:
+  - **Traditional ML:** Logistic Regression, Decision Tree, Random Forest (Selected Champion)
+- Train models on the SMOTE-balanced training set.
 
-### 5. Model Fine-Tuning
+## 5. Model Fine-Tuning
 - Optimize hyperparameters with **GridSearchCV** or **RandomizedSearchCV**.
 - Adjust neural network architecture and learning rate.
 
-### 6. Model Evaluation
+## 6. Model Evaluation
 - Evaluate models on the test set using:
   - Accuracy
   - Precision, Recall, F1-Score
   - ROC-AUC Score
 - Compare performance of ML vs. DL models.
 
-### 7. Deployment
+## 7. Deployment
 - Build a **Streamlit app**:
   - Accepts user input for transactions
   - Displays predictions
