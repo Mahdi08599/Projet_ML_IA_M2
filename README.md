@@ -5,7 +5,7 @@
 [![Scikit-Learn](https://img.shields.io/badge/sklearn-Machine_Learning-orange?style=flat&logo=scikit-learn&logoColor=white)](https://scikit-learn.org/)
 
 ## 📄 Project Overview
-[cite_start]This project is a critical reproduction of the research paper [**"Enhancing credit card fraud detection using traditional and deep learning models"**](https://www.frontiersin.org/journals/artificial-intelligence/articles/10.3389/frai.2025.1643292/full) (Albalawi & Dardouri, 2025). 
+This project is a critical reproduction of the research paper [**"Enhancing credit card fraud detection using traditional and deep learning models"**](https://www.frontiersin.org/journals/artificial-intelligence/articles/10.3389/frai.2025.1643292/full) (Albalawi & Dardouri, 2025). 
 
 The goal was to replicate the study's findings regarding the superiority of **Random Forest** for fraud detection while improving the data engineering pipeline for better real-world robustness. The project includes a full **ML pipeline** (preprocessing, SMOTE, training) and a real-time **Streamlit web application**.
 
