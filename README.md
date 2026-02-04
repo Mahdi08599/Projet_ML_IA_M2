@@ -81,7 +81,7 @@ This project also serves as a hands-on exercise to improve Python programming sk
 
 ## Tools & Libraries
 - Python 3.10+
-- pandas, numpy, matplotlib, seaborn
+- pandas
 - scikit-learn
 - TensorFlow / Keras
 - Streamlit
