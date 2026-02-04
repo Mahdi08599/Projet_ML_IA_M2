@@ -132,25 +132,31 @@ with tab1:
     
     fig, ax = plt.subplots(figsize=(6, 4))
     
-
-    sns.heatmap(cm, annot=True, fmt='d', cmap='Blues', ax=ax, 
-                norm=LogNorm(),  # <--- Magie : permet de voir les nuances même entre 56000 et 84
-                xticklabels=['Normal', 'Fraude'], 
-                yticklabels=['Normal', 'Fraude'],
-                annot_kws={"size": 16, "weight": "bold"}, # On laisse Seaborn gérer la couleur (Noir/Blanc)
-                cbar=False)
+    sns.heatmap(cm, annot=False, cmap='Blues', ax=ax, cbar=False)
     
+    
+    for i in range(cm.shape[0]):
+        for j in range(cm.shape[1]):
+            ax.text(j + 0.5, i + 0.5, str(cm[i, j]),
+                    ha='center', va='center',
+                    color='black', fontsize=20, fontweight='bold')
+    
+    # Réglage des axes
+    ax.set_xticks([0.5, 1.5])
+    ax.set_xticklabels(['Normal', 'Fraude'])
+    ax.set_yticks([0.5, 1.5])
+    ax.set_yticklabels(['Normal', 'Fraude'])
     ax.set_xlabel('Prédiction')
     ax.set_ylabel('Réalité')
+    
     st.pyplot(fig)
     
+    # Analyse textuelle
     st.markdown(f"""
-    **Analyse Scientifique :**
-    Le modèle a été testé sur **{len(y_test)}** transactions réelles (20% du dataset).
-    * Sur **{cm[1][0] + cm[1][1]}** cas de fraudes réelles :
-        * ✅ **{cm[1][1]}** ont été stoppées (Vrais Positifs).
-        * ⚠️ **{cm[1][0]}** sont passées au travers (Faux Négatifs).
-    * **Conclusion :** Avec un taux de détection d'environ **{cm[1][1]/(cm[1][0]+cm[1][1]):.1%}**, le modèle est performant pour sécuriser les transactions.
+    **Lecture des résultats :**
+    * Le modèle a traité **{cm[1][0] + cm[1][1]}** cas de fraude réelle.
+    * Il en a détecté **{cm[1][1]}** (Vrais Positifs).
+    * Il en a manqué **{cm[1][0]}** (Faux Négatifs).
     """)
 
 with tab2:
