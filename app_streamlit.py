@@ -38,7 +38,7 @@ def load_and_train():
     X = df.drop(["Class", "Time", "Amount"], axis=1)
     y = df["Class"]
 
-    # 2. Split (Identique à train_model.py)
+    # 2. Split Train/Test
     X_train, X_test, y_train, y_test = train_test_split(
         X, y, test_size=0.2, stratify=y, random_state=42
     )
@@ -141,10 +141,10 @@ with tab1:
     
     fig, ax = plt.subplots(figsize=(6, 4))
     
-    # 1. Fond coloré avec échelle Logarithmique pour voir les nuances
+    # 1. Heatmap de base
     sns.heatmap(cm, annot=False, cmap='Blues', ax=ax, cbar=False, norm=LogNorm())
     
-    # 2. Texte forcé en NOIR GRAS par-dessus
+    ax.set_title("Matrice de Confusion")
     for i in range(cm.shape[0]):
         for j in range(cm.shape[1]):
             ax.text(j + 0.5, i + 0.5, str(cm[i, j]),
