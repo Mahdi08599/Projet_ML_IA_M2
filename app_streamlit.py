@@ -161,7 +161,7 @@ with tab1:
     st.pyplot(fig)
     
     st.markdown(f"""
-    **Interprétation pour le Jury :**
+    **Interprétation :**
     * Le dataset de test contient **{cm[1][0] + cm[1][1]} fraudes réelles**.
     * Le modèle en a détecté **{cm[1][1]}** (Vrais Positifs).
     * Il en a manqué **{cm[1][0]}** (Faux Négatifs).
