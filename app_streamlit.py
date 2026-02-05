@@ -54,7 +54,7 @@ def load_and_train():
     model = RandomForestClassifier(
         n_estimators=50,    
         max_depth=20,       
-        min_samples_leaf=2,
+        min_samples_leaf=1,
         n_jobs=-1,
         random_state=42
     )
@@ -131,7 +131,8 @@ st.markdown("Ces résultats sont calculés sur **56 962 transactions jamais vues
 X_test_scaled = scaler.transform(X_test)
 y_pred_test = model.predict(X_test_scaled)
 
-tab1, tab2, tab3, tab4 = st.tabs(["Matrice de Confusion", "Métriques Clés", "Feature Importance", "Distribution Montants"])
+# CREATION DES ONGLETS POUR LES DIFFERENTES VISUALISATIONS
+tab1, tab2, tab3, tab4, tab5 = st.tabs(["Matrice de Confusion", "Métriques Clés", "Feature Importance", "Distribution Montants", "🏆 Comparatif Modèles"])
 
 with tab1:
     st.subheader("Performance sur les données de test")
@@ -140,7 +141,7 @@ with tab1:
     
     fig, ax = plt.subplots(figsize=(6, 4))
     
-    # 1. Heatmap de base
+    # Heatmap
     sns.heatmap(cm, annot=False, cmap='Blues', ax=ax, cbar=False, norm=LogNorm())
     
     ax.set_title("Matrice de Confusion")
@@ -162,8 +163,7 @@ with tab1:
     **Interprétation :**
     * Le dataset de test contient **{cm[1][0] + cm[1][1]} fraudes réelles**.
     * Le modèle en a détecté **{cm[1][1]}** (Vrais Positifs).
-    * Il en a manqué **{cm[1][0]}** (Faux Négatifs).
-    * Malgré le fort déséquilibre, le modèle maintient un taux de fausses alertes très bas (**{cm[0][1]}** sur +56k transactions).
+    * Malgré le fort déséquilibre, le modèle maintient un taux de fausses alertes très bas.
     """)
 
 with tab2:
@@ -174,11 +174,9 @@ with tab2:
     f1 = f1_score(y_test, y_pred_test)
     
     col_m1, col_m2, col_m3 = st.columns(3)
-    col_m1.metric("Rappel (Recall)", f"{rec:.1%}", help="Pourcentage des fraudes réelles détectées (Le plus important).")
+    col_m1.metric("Rappel (Recall)", f"{rec:.1%}", help="Pourcentage des fraudes réelles détectées.")
     col_m2.metric("Précision", f"{prec:.1%}", help="Quand le modèle dit 'Fraude', a-t-il raison ?")
     col_m3.metric("F1-Score", f"{f1:.1%}", help="Moyenne harmonique Précision/Rappel.")
-    
-    st.info("Ces métriques confirment la capacité du modèle à généraliser sur de nouvelles données.")
 
 with tab3:
     st.subheader("Qu'est-ce qui définit une fraude ?")
@@ -192,7 +190,6 @@ with tab3:
     sns.barplot(x='Importance', y='Feature', data=feat_imp_df, palette='viridis', ax=ax3)
     ax3.set_title("Top 10 des variables les plus prédictives")
     st.pyplot(fig3)
-    st.caption("Ces variables (issues de la PCA) sont celles que le modèle utilise le plus pour prendre sa décision.")
 
 with tab4:
     st.subheader("Pourquoi utiliser le Logarithme sur le Montant ?")
@@ -203,4 +200,48 @@ with tab4:
     ax2.set_xlabel("log(Montant + 1)")
     ax2.legend()
     st.pyplot(fig2)
-    st.caption("On observe que les fraudes (orange) ne suivent pas la même distribution de montant que les transactions normales (bleu), ce qui aide le modèle.")
+
+# --- NOUVEL ONGLET COMPARATIF ---
+with tab5:
+    st.subheader("Pourquoi avoir choisi ce modèle ?")
+    
+    col_graph, col_text = st.columns([2, 1])
+    
+    with col_graph:
+        # Données de ton benchmark
+        data_perf = {
+            'Modèle': ['Logistic Regression', 'Decision Tree', 'Random Forest'],
+            'F1-Score': [0.11, 0.57, 0.78],
+            'Couleur': ['#e74c3c', '#f1c40f', '#2ecc71']
+        }
+        df_perf = pd.DataFrame(data_perf)
+        
+        fig_comp, ax_comp = plt.subplots(figsize=(8, 5))
+        sns.barplot(x='Modèle', y='F1-Score', data=df_perf, palette=data_perf['Couleur'], ax=ax_comp)
+        
+        # Ligne de l'article
+        ax_comp.axhline(y=0.8256, color='gray', linestyle='--', label="Score Article (0.83)")
+        
+        # Esthétique
+        ax_comp.set_ylim(0, 1.0)
+        ax_comp.set_title("Comparatif des Performances (F1-Score)")
+        ax_comp.legend()
+        
+        # Valeurs sur les barres
+        for i, v in enumerate(data_perf['F1-Score']):
+            ax_comp.text(i, v + 0.02, f"{v:.2f}", ha='center', va='bottom', fontweight='bold', fontsize=12)
+            
+        st.pyplot(fig_comp)
+        
+    with col_text:
+        st.info("""
+        **Analyse Comparative :**
+        
+        Nous avons testé 3 approches :
+        
+        1. **Logistic Regression :** Échec (F1=0.11). Trop de fausses alertes.
+        2. **Decision Tree :** Instable (F1=0.57).
+        3. **Random Forest (Choisi) :** Performance optimale (F1=0.78).
+        
+        La ligne pointillée représente le score atteint par l'article de référence. Nous sommes très proches de l'état de l'art tout en gardant un modèle robuste.
+        """)
